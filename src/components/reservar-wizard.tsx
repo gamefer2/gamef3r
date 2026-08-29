@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { ADDONS, PACKAGES, type AddonId, type PackageId } from "@/lib/content";
 import type { BookingDraft } from "@/lib/booking";
-import { addonLabel, lineLabel } from "@/routes/reservar";
+import { addonLabel, lineLabel } from "@/lib/booking-labels";
 import { pkgDesc, pkgInc, pkgName, type Copy } from "@/lib/i18n";
 import { cn, formatUsd } from "@/lib/utils";
 
