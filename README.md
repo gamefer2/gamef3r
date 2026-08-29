@@ -2,42 +2,49 @@
 
 Media kit y booking de GameFer / TheGameF3R.
 
-Sitio en vivo en Grok: https://gamefer.grok.me  
-Dominio oficial: **gamef3r.com**
+Repo: [github.com/gamefer2/gamef3r](https://github.com/gamefer2/gamef3r)
 
-## Publicar en Vercel y conectar gamef3r.com
+Mientras Vercel termina: el kit ya está en [gamefer.grok.me](https://gamefer.grok.me).
 
-Hazlo una vez. Después, cada `git push` actualiza la web.
+---
 
-### 1. Vercel
+## Conectar gamef3r.com (una sola vez)
 
-1. Entra a [vercel.com](https://vercel.com) con la misma cuenta de GitHub (`gamefer2`).
-2. **Add New… → Project**.
-3. Importa el repo **gamefer2/gamef3r**.
-4. Framework: déjalo en Other / Vite si lo detecta.
-5. Build Command: `npm run build`
-6. **Deploy**.
-7. Cuando termine, abre el link `*.vercel.app` y comprueba que se ve el kit.
+### 1. Publicar en Vercel
 
-### 2. Dominio gamef3r.com
+1. Entra a [vercel.com/signup](https://vercel.com/signup) y elige **Continue with GitHub**.
+2. Autoriza la cuenta **gamefer2**.
+3. **Add New… → Project** → importa **gamefer2/gamef3r**.
+4. Framework: **Other** (o Vite si lo detecta). Build Command: `npm run build`.
+5. **Deploy**. En 1–2 minutos te da un link `algo.vercel.app`.
+6. Ábrelo. Si ves el kit rojo de GAMEFER, ya está.
 
-1. En el proyecto de Vercel: **Settings → Domains → Add**.
-2. Escribe `gamef3r.com` y también `www.gamef3r.com`.
-3. Vercel te muestra un **CNAME** (algo como `cname.vercel-dns.com`). Cópialo.
+### 2. Pegar el dominio en Vercel
 
-### 3. Namecheap (Advanced DNS)
+1. Proyecto → **Settings → Domains → Add**.
+2. Añade `gamef3r.com` y `www.gamef3r.com`.
+3. Copia el valor CNAME que te da Vercel (casi siempre `cname.vercel-dns.com`).
 
-1. Pestaña **Advanced DNS**.
-2. **Borra** las filas **URL Redirect Record** de `@` y `www`.
-3. Pestaña **Domain**: borra también **Redirect Domain**.
-4. **Add New Record**:
+### 3. Namecheap — quitar el redirect y poner CNAME
+
+El redirect HTTP de Namecheap **no sirve para HTTPS**. Hay que borrarlo.
+
+1. Namecheap → **Domain List → gamef3r.com → Manage**.
+2. Pestaña **Advanced DNS**.
+3. **Borra** todas las filas **URL Redirect Record** (`@` y `www`).
+4. Pestaña **Domain**: si hay **Redirect Domain**, bórralo también.
+5. **Advanced DNS → Add New Record**:
 
 | Type | Host | Value |
 |---|---|---|
-| CNAME Record | `www` | el valor que te dio Vercel (`cname.vercel-dns.com`) |
-| ALIAS Record o CNAME | `@` | el mismo valor (si Namecheap no deja CNAME en `@`, usa **ALIAS**) |
+| CNAME Record | `www` | `cname.vercel-dns.com.` |
+| ALIAS Record | `@` | `cname.vercel-dns.com.` |
 
-5. Save. Espera 5–60 minutos.
-6. En Vercel el dominio pasa a **Valid**. Abre https://gamef3r.com
+Si Namecheap no tiene ALIAS para `@`, usa **A Record** Host `@` Value `10.0.1.2` (IP de Vercel).
 
-No hace falta PremiumDNS. Nameservers: **Namecheap BasicDNS**.
+6. Save. Espera 5–60 minutos.
+7. En Vercel el dominio pasa a **Valid**. Abre [https://gamef3r.com](https://gamef3r.com).
+
+Nameservers: **Namecheap BasicDNS**. No hace falta PremiumDNS.
+
+Si el dominio sigue en **STATUS ALERT**, entra al correo de Namecheap y confirma el contacto ICANN.
