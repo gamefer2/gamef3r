@@ -4,7 +4,7 @@ import { Check, Copy as CopyIcon, Mail } from "lucide-react";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { ReservarWizard } from "@/components/reservar-wizard";
 import { Button } from "@/components/ui/button";
-import { ADDONS, PACKAGES, type AddonId, type PackageId } from "@/lib/content";
+import { type PackageId } from "@/lib/content";
 import {
   bookingGmail,
   bookingMailto,
@@ -13,7 +13,8 @@ import {
   useBooking,
   type SubmittedBooking,
 } from "@/lib/booking";
-import { pkgName, useLang, type Copy } from "@/lib/i18n";
+import { lineLabel } from "@/lib/booking-labels";
+import { useLang, type Copy } from "@/lib/i18n";
 import { formatUsd } from "@/lib/utils";
 
 const PACKAGE_IDS: PackageId[] = [
@@ -33,26 +34,6 @@ export const Route = createFileRoute("/reservar")({
   },
   component: ReservarPage,
 });
-
-export function addonLabel(t: Copy, id: AddonId) {
-  switch (id) {
-    case "extraShort":
-      return t.addExtraShort;
-    case "stories":
-      return t.addStories;
-    case "pinned":
-      return t.addPinned;
-    case "exclusive":
-      return t.addExclusive;
-    case "rush":
-      return t.addRush;
-  }
-}
-
-export function lineLabel(t: Copy, id: string) {
-  if (PACKAGE_IDS.includes(id as PackageId)) return pkgName(t, id);
-  return addonLabel(t, id as AddonId);
-}
 
 function bookingMessage(t: Copy, booking: SubmittedBooking) {
   const lines = booking.lines
@@ -108,7 +89,7 @@ function ReservarPage() {
     if (!draft.brand.trim()) e.brand = t.required;
     if (!draft.contact.trim()) e.contact = t.required;
     if (!draft.email.trim()) e.email = t.required;
-    else if (!/[^\s@]+@[^\s@]+\.[^\s@]+/.test(draft.email)) e.email = t.invalidEmail;
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(draft.email)) e.email = t.invalidEmail;
     if (Object.keys(e).length) {
       setErrors(e);
       return;
@@ -253,6 +234,3 @@ function Row({ k, v }: { k: string; v: string }) {
     </div>
   );
 }
-
-void ADDONS;
-void PACKAGES;
