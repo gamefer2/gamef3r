@@ -10,6 +10,9 @@ import { LangProvider } from "@/lib/i18n";
 import appCss from "../styles.css?url";
 
 const APP_NAME = "GAMEFER";
+const SITE = "https://gamef3r.com";
+const DESC =
+  "Media kit y booking de GameFer y TheGameF3R. 1.83M combinados en YouTube. Patrocinios para marcas en Latinoamérica.";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -17,18 +20,20 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: APP_NAME },
-      {
-        name: "description",
-        content:
-          "Media kit y booking de GameFer. 1.39M de suscriptores en YouTube. Patrocinios para marcas en Latinoamérica.",
-      },
+      { name: "description", content: DESC },
       { name: "theme-color", content: "#0E0909" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE },
+      { property: "og:title", content: APP_NAME },
+      { property: "og:description", content: DESC },
+      { property: "og:image", content: `${SITE}/og.jpg` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: `${SITE}/og.jpg` },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       { rel: "stylesheet", href: appCss },
-      { rel: "manifest", href: "/__grok/manifest.webmanifest" },
-      { rel: "apple-touch-icon", href: "/__grok/icon-180.png" },
+      { rel: "canonical", href: SITE },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "preconnect",
