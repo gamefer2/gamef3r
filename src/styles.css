@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0e0909;
+  --color-foreground: #f3edeb;
+  --color-card: #171111;
+  --color-card-foreground: #f3edeb;
+  --color-elevated: #1f1717;
+  --color-primary: #f3edeb;
+  --color-primary-foreground: #0e0909;
+  --color-accent: #e23d35;
+  --color-accent-foreground: #fff8f6;
+  --color-muted: #1f1717;
+  --color-muted-foreground: #9a8b89;
+  --color-subtle: #746866;
+  --color-border: #f3edeb14;
+  --color-ring: #e23d35;
+  --color-destructive: #e23d35;
+
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius: 0.75rem;
+
+  --shadow-border: 0 0 0 1px rgba(243, 237, 235, 0.08);
+  --shadow-border-hover: 0 0 0 1px rgba(243, 237, 235, 0.14);
+  --shadow-portrait: 0 0 80px color-mix(in oklab, var(--color-accent) 40%, transparent);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-micro: 80ms;
+  --motion-quick: 150ms;
+  --motion-fast: 250ms;
+  --motion-slow: 400ms;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    font-family: var(--font-display);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img {
+    outline: 1px solid rgba(238, 238, 232, 0.1);
+    outline-offset: -1px;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-accent-foreground);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
